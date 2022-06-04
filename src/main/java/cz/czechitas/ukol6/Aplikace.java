@@ -13,7 +13,7 @@ public class Aplikace extends JFrame {
     private JLabel husyLabel;
     private JTextField husyField;
     private JLabel kraliciLabel;
-    private JTextField kraliciField;
+    private JSpinner kraliciField;
 
     private JButton vypocitatButton;
 
@@ -57,8 +57,8 @@ public class Aplikace extends JFrame {
         kraliciLabel= new JLabel("Králíci");
         kraliciLabel.setDisplayedMnemonic('K');
         kraliciLabel.setLabelFor(kraliciField);
-        kraliciField= new JTextField();
-        kraliciField.setHorizontalAlignment(JTextField.TRAILING);
+        kraliciField= new JSpinner();
+        //kraliciField.setHorizontalAlignment(JTextField.TRAILING);
         add(kraliciLabel);
         add(kraliciField);
 
@@ -89,7 +89,7 @@ public class Aplikace extends JFrame {
     }
 
     private void vypocitejButton(ActionEvent actionEvent) {
-        int pocetHlavKraliku=Integer.parseInt(kraliciField.getText());
+        int pocetHlavKraliku=(Integer)kraliciField.getValue();
         int pocetHlavHus=Integer.parseInt(husyField.getText());
 
         int pocetHlav=pocetHlavHus+pocetHlavKraliku;
