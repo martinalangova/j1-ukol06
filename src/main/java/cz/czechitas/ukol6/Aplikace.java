@@ -11,9 +11,12 @@ import java.awt.event.ActionEvent;
 public class Aplikace extends JFrame {
 
     private JLabel husyLabel;
-    private JTextField husyField;
+    private JSpinner husyField;
     private JLabel kraliciLabel;
     private JSpinner kraliciField;
+
+    private SpinnerNumberModel kraliciSpinnerModel;
+    private SpinnerNumberModel husySpinnerModel;
 
     private JButton vypocitatButton;
 
@@ -49,15 +52,17 @@ public class Aplikace extends JFrame {
         husyLabel=new JLabel("Husy");
         husyLabel.setDisplayedMnemonic('H');
         husyLabel.setLabelFor(husyField);
-        husyField = new JTextField();
-        husyField.setHorizontalAlignment(JTextField.TRAILING);
+        husySpinnerModel=new SpinnerNumberModel(0,0,null,1);
+        husyField= new JSpinner(husySpinnerModel);
+        //husyField.setHorizontalAlignment(JTextField.TRAILING);
         add(husyLabel);
         add(husyField);
 
         kraliciLabel= new JLabel("Králíci");
         kraliciLabel.setDisplayedMnemonic('K');
         kraliciLabel.setLabelFor(kraliciField);
-        kraliciField= new JSpinner();
+        kraliciSpinnerModel=new SpinnerNumberModel(0,0,null,1);
+        kraliciField= new JSpinner(kraliciSpinnerModel);
         //kraliciField.setHorizontalAlignment(JTextField.TRAILING);
         add(kraliciLabel);
         add(kraliciField);
@@ -90,7 +95,7 @@ public class Aplikace extends JFrame {
 
     private void vypocitejButton(ActionEvent actionEvent) {
         int pocetHlavKraliku=(Integer)kraliciField.getValue();
-        int pocetHlavHus=Integer.parseInt(husyField.getText());
+        int pocetHlavHus=(Integer)husyField.getValue();
 
         int pocetHlav=pocetHlavHus+pocetHlavKraliku;
         int pocetNohou=pocetHlavHus*2+pocetHlavKraliku*4;
